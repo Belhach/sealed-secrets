@@ -85,7 +85,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | ------------------------------------------------- | ------------------------------------------------------------------------------------ | ----------------------------------- |
 | `image.registry`                                  | Sealed Secrets image registry                                                        | `quay.io`                           |
 | `image.repository`                                | Sealed Secrets image repository                                                      | `bitnami/sealed-secrets-controller` |
-| `image.tag`                                       | Sealed Secrets image tag (immutable tags are recommended)                            | `v0.17.3`                           |
+| `image.tag`                                       | Sealed Secrets image tag (immutable tags are recommended)                            | `v0.17.4`                           |
 | `image.pullPolicy`                                | Sealed Secrets image pull policy                                                     | `IfNotPresent`                      |
 | `image.pullSecrets`                               | Sealed Secrets image pull secrets                                                    | `[]`                                |
 | `createController`                                | Specifies whether the Sealed Secrets controller should be created                    | `true`                              |
@@ -214,6 +214,14 @@ kubeseal --fetch-cert \
 ```
 
 Read about kubeseal usage on [sealed-secrets docs](https://github.com/bitnami-labs/sealed-secrets#usage).
+
+NOTE: the helm chart by default installs the controller with the name `sealed-secrets`, while the `kubeseal` command line interface (CLI) tries to access the controller with the name `sealed-secrets-controller`. You can explicitly pass `--controller-name` to the CLI:
+
+```bash
+kubeseal --controller-name sealed-secrets <args>
+```
+
+Alternatively, you can override `fullnameOverride` on the helm chart install.
 
 ## Configuration and installation details
 
