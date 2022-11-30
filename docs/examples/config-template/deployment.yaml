@@ -20,6 +20,11 @@ spec:
         volumeMounts:
         - name: config-volume
           mountPath: /config
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          runAsUser: 100000
+          runAsGroup: 100000
         command: ["sh", "-c"]
         args:
         - |
